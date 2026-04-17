@@ -1,0 +1,349 @@
+/* ============================================================
+   TAILA IDZI — stylesheet
+   ============================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f8f6f2;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #1a1a1a;
+}
+
+/* ── Layout ─────────────────────────────────────────────── */
+
+#wrapper {
+    width: 860px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 36px 24px 60px;
+}
+
+/* ── Logo ────────────────────────────────────────────────── */
+
+#logo {
+    display: block;
+    margin-bottom: 22px;
+}
+
+#logo img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* ── Navegação ───────────────────────────────────────────── */
+
+#nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    align-items: center;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #d8d4ce;
+}
+
+#nav a {
+    display: block;
+    line-height: 0;
+}
+
+#nav a img {
+    display: block;
+    border: none;
+    transition: opacity 0.15s ease;
+}
+
+#nav a:hover img {
+    opacity: 0.72;
+}
+
+/* ── Letreiro infinito ───────────────────────────────────── */
+
+.marquee-wrap {
+    overflow: hidden;
+    background: #1a1a1a;
+    padding: 10px 0;
+    margin-bottom: 36px;
+    margin-left: -24px;
+    margin-right: -24px;
+}
+
+.marquee-track {
+    display: flex;
+    white-space: nowrap;
+    animation: marquee 28s linear infinite;
+}
+
+.marquee-wrap:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+.marquee-track span {
+    color: #f8f6f2;
+    font-size: 13px;
+    letter-spacing: 3px;
+    padding-right: 0;
+}
+
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+/* ── Carrossel (homepage) ────────────────────────────────── */
+
+#carousel-wrap {
+    position: relative;
+    height: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 52px;
+    overflow: hidden;
+}
+
+.c-item {
+    position: absolute;
+    transition: transform 0.55s cubic-bezier(.4,0,.2,1),
+                filter 0.55s ease,
+                opacity 0.55s ease,
+                box-shadow 0.55s ease,
+                outline 0.3s ease;
+    cursor: pointer;
+    outline: 3px solid transparent;
+}
+
+.c-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* estado: item central — foco */
+.c-item.c-active {
+    width: 300px;
+    height: 340px;
+    transform: translateX(0) scale(1);
+    z-index: 5;
+    filter: none;
+    outline: 3px solid rgba(190, 155, 70, 0.75);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35), 0 0 0 6px rgba(190,155,70,0.12);
+}
+
+/* estado: vizinhos laterais */
+.c-item.c-side {
+    width: 220px;
+    height: 250px;
+    z-index: 3;
+    filter: brightness(0.55) saturate(0.7);
+    box-shadow: none;
+}
+
+.c-item.c-side:nth-child(odd)  { transform: translateX(-290px) scale(0.9); }
+.c-item.c-side:nth-child(even) { transform: translateX(290px)  scale(0.9); }
+
+/* estado: distantes */
+.c-item.c-far {
+    width: 180px;
+    height: 200px;
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+    transform: translateX(0) scale(0.5);
+}
+
+/* botões do carrossel */
+.c-prev, .c-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(26, 26, 26, 0.55);
+    color: #f8f6f2;
+    border: none;
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.c-prev { left: 8px; }
+.c-next { right: 8px; }
+
+.c-prev:hover, .c-next:hover {
+    background: rgba(26, 26, 26, 0.88);
+}
+
+/* ── Galeria — efeito museu ──────────────────────────────── */
+
+.gallery {
+    columns: 4 140px;
+    column-gap: 5px;
+}
+
+.gallery a {
+    break-inside: avoid;
+    display: block;
+    margin-bottom: 5px;
+    overflow: hidden;
+    position: relative;
+    line-height: 0;
+    transition: transform 0.4s cubic-bezier(.4,0,.2,1),
+                box-shadow 0.4s ease,
+                outline-color 0.4s ease;
+    outline: 3px solid transparent;
+    z-index: 0;
+}
+
+.gallery a img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s cubic-bezier(.4,0,.2,1),
+                filter 0.4s ease;
+}
+
+/* efeito museu: sobe + moldura dourada + sombra de parede */
+.gallery a:hover {
+    transform: translateY(-6px) scale(1.02);
+    outline-color: rgba(190, 155, 70, 0.7);
+    box-shadow:
+        0 24px 56px rgba(0, 0, 0, 0.28),
+        0 0 0 5px rgba(190, 155, 70, 0.12);
+    z-index: 10;
+}
+
+.gallery a:hover img {
+    transform: scale(1.05);
+    filter: brightness(1.04) contrast(1.03);
+}
+
+/* ── Lightbox com fade ───────────────────────────────────── */
+
+.lightbox {
+    display: flex;
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(10, 10, 10, 0.92);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox:target {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    box-shadow: 0 8px 60px rgba(0, 0, 0, 0.7);
+    transform: scale(0.96);
+    transition: transform 0.35s ease;
+    outline: 3px solid rgba(190, 155, 70, 0.45);
+}
+
+.lightbox:target img {
+    transform: scale(1);
+}
+
+.lightbox .close {
+    position: fixed;
+    top: 20px;
+    right: 28px;
+    color: #f8f6f2;
+    font-size: 44px;
+    text-decoration: none;
+    line-height: 1;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+}
+
+.lightbox .close:hover {
+    opacity: 1;
+}
+
+/* ── Páginas de texto ────────────────────────────────────── */
+
+.text-content {
+    max-width: 640px;
+    line-height: 1.9;
+    font-size: 14px;
+}
+
+.text-content p { margin-bottom: 14px; }
+
+.text-content h2 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ── Links ───────────────────────────────────────────────── */
+
+.links-list { list-style: none; padding: 0; }
+
+.links-list li { margin-bottom: 8px; }
+
+.links-list a {
+    color: #1a1a1a;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.links-list a:hover { text-decoration: underline; }
+
+/* ── Mobile ──────────────────────────────────────────────── */
+
+@media (max-width: 600px) {
+
+    #wrapper { padding: 20px 16px 48px; }
+
+    #nav {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        gap: 8px;
+        scrollbar-width: none;
+    }
+
+    #nav::-webkit-scrollbar { display: none; }
+
+    #nav a img { height: 38px; width: auto; }
+
+    .marquee-wrap {
+        margin-left: -16px;
+        margin-right: -16px;
+    }
+
+    .gallery { columns: 2 110px; }
+
+    #carousel-wrap { height: 260px; }
+
+    .c-item.c-active  { width: 200px; height: 230px; }
+    .c-item.c-side    { width: 130px; height: 150px; }
+    .c-item.c-side:nth-child(odd)  { transform: translateX(-175px) scale(0.9); }
+    .c-item.c-side:nth-child(even) { transform: translateX(175px)  scale(0.9); }
+
+    .lightbox img { max-width: 96vw; max-height: 80vh; }
+    .lightbox .close { top: 12px; right: 16px; font-size: 36px; }
+}
