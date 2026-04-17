@@ -50,18 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 5000);
     }
 
-    // ── 2. Letreiro infinito ────────────────────────────────────────
-    const nav = document.getElementById('nav');
-    if (nav) {
-        const words = 'GRAVURA · DESENHO · DESOBJETOS · PINTURENHOS · LABORATÓRIO DE AFETOS · OBJETOS · COISINHA DE NADA · TAILA IDZI · ';
-        const marquee = document.createElement('div');
-        marquee.className = 'marquee-wrap';
-        marquee.innerHTML =
-            `<div class="marquee-track"><span>${words.repeat(6)}</span></div>`;
-        nav.after(marquee);
-    }
-
-    // ── 2 & 3. Carrossel com focus ──────────────────────────────────
+    // ── 2. Carrossel com focus ──────────────────────────────────────
     const wrap = document.getElementById('carousel-wrap');
     if (!wrap) return;
 

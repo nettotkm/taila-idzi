@@ -198,37 +198,6 @@ body {
     background: rgba(190,155,70,0.75);
 }
 
-/* ── Letreiro infinito ───────────────────────────────────── */
-
-.marquee-wrap {
-    overflow: hidden;
-    background: #1a1a1a;
-    padding: 10px 0;
-    margin-bottom: 0;
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.marquee-track {
-    display: flex;
-    white-space: nowrap;
-    animation: marquee 28s linear infinite;
-}
-
-.marquee-wrap:hover .marquee-track { animation-play-state: paused; }
-
-.marquee-track span {
-    color: #f8f6f2;
-    font-size: 12px;
-    letter-spacing: 3px;
-}
-
-@keyframes marquee {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-}
 
 /* ── Carrossel ───────────────────────────────────────────── */
 
