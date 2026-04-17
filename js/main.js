@@ -1,6 +1,42 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    // ── 1. Letreiro infinito ────────────────────────────────────────
+    // ── 1. Hero slideshow ───────────────────────────────────────────
+    // Imagens selecionadas por terem boa composição em full-screen:
+    // espaços de exposição, instalações e objetos com fundo dramático
+    const heroImages = [
+        'fotos/Laborat_rio_de_Afetos-020.jpg',  // vista de instalação
+        'fotos/IMG_6413.jpg',                    // objeto no chão — fundo natural
+        'fotos/Laborat_rio_de_Afetos-001.jpg',   // espaço de exposição
+        'fotos/IMG_6440.jpg',                    // objeto — fundo natural
+        'fotos/Laborat_rio_de_Afetos-030.jpg',   // instalação
+        'fotos/IMG_6449.jpg',                    // objeto — composição dramática
+        'fotos/Laborat_rio_de_Afetos-015.jpg',   // espaço expositivo
+    ];
+
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        const slidesEl = document.createElement('div');
+        slidesEl.className = 'hero-slides';
+
+        heroImages.forEach((src, i) => {
+            const slide = document.createElement('div');
+            slide.className = 'hero-slide' + (i === 0 ? ' active' : '');
+            slide.style.backgroundImage = `url(${src})`;
+            slidesEl.appendChild(slide);
+        });
+
+        hero.insertBefore(slidesEl, hero.firstChild);
+
+        let current = 0;
+        setInterval(() => {
+            const slides = slidesEl.querySelectorAll('.hero-slide');
+            slides[current].classList.remove('active');
+            current = (current + 1) % slides.length;
+            slides[current].classList.add('active');
+        }, 5000);
+    }
+
+    // ── 2. Letreiro infinito ────────────────────────────────────────
     const nav = document.getElementById('nav');
     if (nav) {
         const words = 'GRAVURA · DESENHO · DESOBJETOS · PINTURENHOS · LABORATÓRIO DE AFETOS · OBJETOS · COISINHA DE NADA · TAILA IDZI · ';
