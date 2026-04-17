@@ -106,6 +106,25 @@ body {
     50%       { transform: translateX(-50%) translateY(7px); }
 }
 
+/* hero progress bar */
+.hero-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(255,255,255,0.12);
+    z-index: 3;
+    overflow: hidden;
+}
+
+.hero-progress-bar {
+    height: 100%;
+    background: rgba(190,155,70,0.85);
+    width: 0%;
+    transition: width 5s linear;
+}
+
 /* ── Wrapper central ─────────────────────────────────────── */
 
 #wrapper {
@@ -184,76 +203,176 @@ body {
 /* ── Carrossel ───────────────────────────────────────────── */
 
 #carousel-section {
-    padding: 52px 24px 0;
-    width: 860px;
-    max-width: 100%;
+    padding: 0;
+    width: 100%;
+    overflow: hidden;
+    background: #0d0d0d;
+}
+
+/* cabeçalho do carrossel */
+.c-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 52px 60px 28px;
+    max-width: 1100px;
     margin: 0 auto;
+}
+
+.c-label {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: rgba(248,246,242,0.35);
+}
+
+.c-counter {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: rgba(248,246,242,0.4);
+    font-variant-numeric: tabular-nums;
+}
+
+.c-counter strong {
+    color: rgba(190,155,70,0.9);
+    font-weight: normal;
 }
 
 #carousel-wrap {
     position: relative;
-    height: 380px;
+    height: 480px;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
 }
 
 .c-item {
     position: absolute;
-    transition: transform 0.55s cubic-bezier(.4,0,.2,1),
-                filter 0.55s ease,
-                opacity 0.55s ease,
-                box-shadow 0.55s ease,
-                outline 0.3s ease;
     cursor: pointer;
+    transition:
+        transform  0.6s cubic-bezier(.4, 0, .2, 1),
+        filter     0.6s ease,
+        opacity    0.6s ease,
+        box-shadow 0.6s ease,
+        outline    0.4s ease;
     outline: 3px solid transparent;
+    overflow: hidden;
 }
 
-.c-item img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.c-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    transition: transform 0.6s ease;
+}
 
+/* ativo — centro, grande, nítido */
 .c-item.c-active {
-    width: 300px; height: 340px;
+    width: 360px;
+    height: 420px;
     transform: translateX(0) scale(1);
     z-index: 5;
     filter: none;
-    outline: 3px solid rgba(190,155,70,0.75);
-    box-shadow: 0 24px 64px rgba(0,0,0,0.35), 0 0 0 6px rgba(190,155,70,0.12);
+    outline: 3px solid rgba(190, 155, 70, 0.8);
+    box-shadow:
+        0 30px 80px rgba(0,0,0,0.4),
+        0 0 0 7px rgba(190,155,70,0.1);
 }
 
-.c-item.c-side {
-    width: 220px; height: 250px;
+.c-item.c-active img { transform: scale(1); }
+
+/* anterior — esquerda */
+.c-item.c-prev {
+    width: 230px;
+    height: 270px;
+    transform: translateX(-310px) scale(1);
     z-index: 3;
-    filter: brightness(0.5) saturate(0.6);
+    filter: brightness(0.42) saturate(0.4);
+    box-shadow: none;
 }
 
-.c-item.c-side:nth-child(odd)  { transform: translateX(-290px) scale(0.9); }
-.c-item.c-side:nth-child(even) { transform: translateX(290px)  scale(0.9); }
+/* próximo — direita */
+.c-item.c-next {
+    width: 230px;
+    height: 270px;
+    transform: translateX(310px) scale(1);
+    z-index: 3;
+    filter: brightness(0.42) saturate(0.4);
+    box-shadow: none;
+}
 
+/* distantes — escondidos atrás */
 .c-item.c-far {
-    width: 180px; height: 200px;
-    opacity: 0; z-index: 1;
+    width: 200px;
+    height: 230px;
+    opacity: 0;
+    z-index: 1;
     pointer-events: none;
-    transform: translateX(0) scale(0.5);
+    transform: translateX(0) scale(0.4);
 }
 
-.c-prev, .c-next {
-    position: absolute; top: 50%;
+/* seta esquerda */
+.c-prev-btn, .c-next-btn {
+    position: absolute;
+    top: 50%;
     transform: translateY(-50%);
     z-index: 10;
-    background: rgba(26,26,26,0.55);
+    background: rgba(248, 246, 242, 0.12);
     color: #f8f6f2;
-    border: none;
-    width: 38px; height: 38px;
-    font-size: 18px;
+    border: 1px solid rgba(248,246,242,0.2);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    font-size: 20px;
     cursor: pointer;
-    transition: background 0.2s ease;
-    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
 }
 
-.c-prev { left: 8px; }
-.c-next { right: 8px; }
-.c-prev:hover, .c-next:hover { background: rgba(26,26,26,0.9); }
+.c-prev-btn { left: 20px; }
+.c-next-btn { right: 20px; }
+
+.c-prev-btn:hover, .c-next-btn:hover {
+    background: rgba(248,246,242,0.25);
+    border-color: rgba(248,246,242,0.4);
+}
+
+/* rodapé do carrossel */
+.c-footer {
+    padding: 28px 60px 52px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* dots de paginação */
+.c-dots {
+    display: flex;
+    justify-content: flex-start;
+    gap: 8px;
+    margin-top: 0;
+    padding-bottom: 0;
+}
+
+.c-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(26,26,26,0.2);
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    border: none;
+    padding: 0;
+}
+
+.c-dot-active {
+    background: rgba(190,155,70,0.85);
+    transform: scale(1.4);
+}
 
 /* ── Citação tipográfica ─────────────────────────────────── */
 
@@ -398,6 +517,85 @@ body {
 .cta-links a:hover {
     color: #f8f6f2;
     border-bottom-color: rgba(190,155,70,0.65);
+}
+
+/* ── Destaque editorial (seção split) ────────────────────── */
+
+.editorial-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 520px;
+}
+
+.editorial-img {
+    overflow: hidden;
+    position: relative;
+}
+
+.editorial-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.8);
+    transition: transform 0.8s cubic-bezier(.4,0,.2,1), filter 0.6s ease;
+}
+
+.editorial-section:hover .editorial-img img {
+    transform: scale(1.04);
+    filter: saturate(1);
+}
+
+.editorial-text {
+    background: #111;
+    padding: 80px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.editorial-eyebrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: rgba(190,155,70,0.8);
+    margin-bottom: 28px;
+}
+
+.editorial-title {
+    font-family: 'MoonFlower', cursive;
+    font-size: clamp(32px, 3.5vw, 52px);
+    color: #f8f6f2;
+    line-height: 1.1;
+    margin-bottom: 24px;
+}
+
+.editorial-desc {
+    font-size: 13px;
+    color: rgba(248,246,242,0.5);
+    line-height: 2;
+    max-width: 340px;
+    margin-bottom: 40px;
+}
+
+.editorial-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #f8f6f2;
+    text-decoration: none;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(190,155,70,0.5);
+    transition: gap 0.3s ease, border-color 0.3s ease;
+    width: fit-content;
+}
+
+.editorial-link:hover {
+    gap: 18px;
+    border-bottom-color: rgba(190,155,70,1);
 }
 
 /* ── Galeria masonry (páginas internas) ──────────────────── */
@@ -561,13 +759,19 @@ body {
     #nav::-webkit-scrollbar { display: none; }
     #nav a img { height: 38px; width: auto; }
 
-    #carousel-section { padding: 40px 16px 0; }
+    .c-header { padding: 36px 20px 20px; }
+    .c-footer { padding: 20px 20px 40px; }
 
-    #carousel-wrap { height: 260px; }
-    .c-item.c-active  { width: 200px; height: 230px; }
-    .c-item.c-side    { width: 130px; height: 150px; }
-    .c-item.c-side:nth-child(odd)  { transform: translateX(-170px) scale(0.9); }
-    .c-item.c-side:nth-child(even) { transform: translateX(170px)  scale(0.9); }
+    #carousel-wrap { height: 300px; }
+    .c-item.c-active { width: 200px; height: 255px; }
+    .c-item.c-prev   { width: 130px; height: 155px; transform: translateX(-175px) scale(1); }
+    .c-item.c-next   { width: 130px; height: 155px; transform: translateX(175px)  scale(1); }
+    .c-prev-btn { left: 8px; }
+    .c-next-btn { right: 8px; }
+
+    .editorial-section { grid-template-columns: 1fr; }
+    .editorial-img { min-height: 280px; }
+    .editorial-text { padding: 48px 24px; }
 
     .quote-section { padding: 60px 24px; }
     .scattered-section { padding: 50px 20px 60px; }

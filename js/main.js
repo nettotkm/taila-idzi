@@ -27,12 +27,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
         hero.insertBefore(slidesEl, hero.firstChild);
 
-        let current = 0;
+        // progress bar
+        const progressBar = hero.querySelector('.hero-progress-bar');
+        function resetProgress() {
+            if (!progressBar) return;
+            progressBar.style.transition = 'none';
+            progressBar.style.width = '0%';
+            // force reflow so transition restarts
+            progressBar.offsetWidth;
+            progressBar.style.transition = 'width 5s linear';
+            progressBar.style.width = '100%';
+        }
+        resetProgress();
+
+        let heroCurrent = 0;
         setInterval(() => {
             const slides = slidesEl.querySelectorAll('.hero-slide');
-            slides[current].classList.remove('active');
-            current = (current + 1) % slides.length;
-            slides[current].classList.add('active');
+            slides[heroCurrent].classList.remove('active');
+            heroCurrent = (heroCurrent + 1) % slides.length;
+            slides[heroCurrent].classList.add('active');
+            resetProgress();
         }, 5000);
     }
 
@@ -51,22 +65,26 @@ document.addEventListener('DOMContentLoaded', function () {
     const wrap = document.getElementById('carousel-wrap');
     if (!wrap) return;
 
-    const items  = Array.from(wrap.querySelectorAll('.c-item'));
-    const total  = items.length;
-    let current  = 0;
+    const items = Array.from(wrap.querySelectorAll('.c-item'));
+    const section = document.getElementById('carousel-section');
+    const dots  = section ? Array.from(section.querySelectorAll('.c-dot')) : [];
+    const counterEl = document.getElementById('c-current-num');
+    const total = items.length;
+    let current = 0;
     let timer;
 
     function update() {
         items.forEach((item, i) => {
-            item.classList.remove('c-active', 'c-side', 'c-far');
-            const dist = Math.min(
-                Math.abs(i - current),
-                total - Math.abs(i - current)
-            );
-            if (dist === 0) item.classList.add('c-active');
-            else if (dist === 1) item.classList.add('c-side');
-            else item.classList.add('c-far');
+            item.classList.remove('c-active', 'c-prev', 'c-next', 'c-far');
+            // posição relativa ao item ativo (circular)
+            const rel = ((i - current) % total + total) % total;
+            if      (rel === 0)         item.classList.add('c-active');
+            else if (rel === total - 1) item.classList.add('c-prev');   // sempre à esquerda
+            else if (rel === 1)         item.classList.add('c-next');   // sempre à direita
+            else                        item.classList.add('c-far');
         });
+        dots.forEach((d, i) => d.classList.toggle('c-dot-active', i === current));
+        if (counterEl) counterEl.textContent = String(current + 1).padStart(2, '0');
     }
 
     function goTo(idx) {
@@ -77,15 +95,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function resetTimer() {
         clearInterval(timer);
-        timer = setInterval(() => goTo(current + 1), 3800);
+        timer = setInterval(() => goTo(current + 1), 4200);
     }
 
-    wrap.querySelector('.c-prev').addEventListener('click', () => goTo(current - 1));
-    wrap.querySelector('.c-next').addEventListener('click', () => goTo(current + 1));
+    wrap.querySelector('.c-prev-btn').addEventListener('click', () => goTo(current - 1));
+    wrap.querySelector('.c-next-btn').addEventListener('click', () => goTo(current + 1));
+    dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
 
-    // swipe em mobile
+    // swipe mobile
     let startX = 0;
-    wrap.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
+    wrap.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
     wrap.addEventListener('touchend',   e => {
         const dx = e.changedTouches[0].clientX - startX;
         if (Math.abs(dx) > 50) goTo(current + (dx < 0 ? 1 : -1));

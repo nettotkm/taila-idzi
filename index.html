@@ -16,6 +16,7 @@
             <p class="hero-sub">Gravura &nbsp;·&nbsp; Desenho &nbsp;·&nbsp; Instalação &nbsp;·&nbsp; Objetos</p>
         </div>
         <span class="scroll-hint">scroll ↓</span>
+        <div class="hero-progress"><div class="hero-progress-bar"></div></div>
     </section>
 
     <!-- ── Nav + logo ───────────────────────────────────── -->
@@ -43,35 +44,66 @@
 
     <!-- ── Carrossel de obras ────────────────────────────── -->
     <section id="carousel-section">
+        <div class="c-header">
+            <span class="c-label">obras em destaque</span>
+            <span class="c-counter"><strong id="c-current-num">01</strong> / 08</span>
+        </div>
+
         <div id="carousel-wrap">
-            <button class="c-prev">&#8249;</button>
+            <button class="c-prev-btn">&#8249;</button>
 
             <div class="c-item" onclick="location.href='laboratorios-de-afetos.html'">
-                <img src="fotos/Laborat_rio_de_Afetos-001.jpg" alt="">
+                <img src="fotos/Laborat_rio_de_Afetos-001.jpg" alt="Laboratório de Afetos">
             </div>
             <div class="c-item" onclick="location.href='desobjetos.html'">
-                <img src="fotos/IMG_6413.jpg" alt="">
+                <img src="fotos/IMG_6413.jpg" alt="Desobjetos">
             </div>
             <div class="c-item" onclick="location.href='gravura.html'">
-                <img src="fotos/1.jpg" alt="">
+                <img src="fotos/1.jpg" alt="Gravura">
             </div>
             <div class="c-item" onclick="location.href='laboratorios-de-afetos.html'">
-                <img src="fotos/Laborat_rio_de_Afetos-035.jpg" alt="">
+                <img src="fotos/Laborat_rio_de_Afetos-035.jpg" alt="Laboratório de Afetos">
             </div>
             <div class="c-item" onclick="location.href='pinturenhos.html'">
-                <img src="fotos/P8.jpg" alt="">
+                <img src="fotos/P8.jpg" alt="Pinturenhos">
             </div>
             <div class="c-item" onclick="location.href='desobjetos.html'">
-                <img src="fotos/IMG_2499.jpg" alt="">
+                <img src="fotos/IMG_2499.jpg" alt="Desobjetos">
             </div>
             <div class="c-item" onclick="location.href='objetos.html'">
-                <img src="fotos/A.jpg" alt="">
+                <img src="fotos/A.jpg" alt="Objetos">
             </div>
             <div class="c-item" onclick="location.href='laboratorios-de-afetos.html'">
-                <img src="fotos/Laborat_rio_de_Afetos-041.jpg" alt="">
+                <img src="fotos/Laborat_rio_de_Afetos-041.jpg" alt="Laboratório de Afetos">
             </div>
 
-            <button class="c-next">&#8250;</button>
+            <button class="c-next-btn">&#8250;</button>
+        </div>
+
+        <div class="c-footer">
+            <div class="c-dots">
+                <button class="c-dot"></button>
+                <button class="c-dot"></button>
+                <button class="c-dot"></button>
+                <button class="c-dot"></button>
+                <button class="c-dot"></button>
+                <button class="c-dot"></button>
+                <button class="c-dot"></button>
+                <button class="c-dot"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Destaque editorial ────────────────────────────── -->
+    <section class="editorial-section">
+        <div class="editorial-img">
+            <img src="fotos/Laborat_rio_de_Afetos-020.jpg" alt="Laboratório de Afetos">
+        </div>
+        <div class="editorial-text">
+            <p class="editorial-eyebrow">série em destaque</p>
+            <h2 class="editorial-title">Laboratório<br>de Afetos</h2>
+            <p class="editorial-desc">Uma investigação visual sobre os rastros que os afetos deixam nas coisas — instalações, gravuras e objetos que habitam o espaço entre a memória e a matéria.</p>
+            <a href="laboratorios-de-afetos.html" class="editorial-link">ver série →</a>
         </div>
     </section>
 
