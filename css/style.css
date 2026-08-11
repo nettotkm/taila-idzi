@@ -254,6 +254,90 @@ body {
 }
 
 
+/* ── Flythrough — imagens vindo em direção à tela ────────── */
+
+.flythrough {
+    position: relative;
+    height: 220vh;               /* espaço de rolagem sobre a cena fixa */
+    background: #0d0d0d;
+}
+
+.flythrough-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(120% 90% at 50% 50%,
+            rgba(190,155,70,0.06) 0%,
+            rgba(13,13,13,0) 55%),
+        #0d0d0d;
+}
+
+.flythrough-scene {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.ft-img {
+    position: absolute;
+    display: block;
+    object-fit: cover;
+    transform: translate(-50%, -50%) scale(0.1);
+    opacity: 0;
+    box-shadow: 0 24px 50px rgba(0,0,0,0.5);
+    outline: 1px solid rgba(248,246,242,0.06);
+}
+
+.flythrough-caption {
+    position: relative;
+    z-index: 6;
+    text-align: center;
+    pointer-events: none;
+    padding: 0 24px;
+    transition: opacity 0.3s ease;
+}
+
+.flythrough-eyebrow {
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: rgba(190,155,70,0.85);
+    margin-bottom: 18px;
+}
+
+.flythrough-heading {
+    font-family: 'MoonFlower', cursive;
+    font-size: clamp(52px, 9vw, 128px);
+    font-weight: bold;
+    line-height: 0.9;
+    letter-spacing: 3px;
+    color: #f8f6f2;
+    text-shadow: 0 8px 40px rgba(0,0,0,0.6);
+}
+
+.flythrough-hint {
+    position: absolute;
+    bottom: 26px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 6;
+    color: rgba(248,246,242,0.4);
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    animation: bounce 2.2s ease infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .flythrough { height: 100vh; }
+    .flythrough-hint { display: none; }
+}
+
 /* ── Carrossel ───────────────────────────────────────────── */
 
 #carousel-section {
