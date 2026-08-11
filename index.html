@@ -8,37 +8,31 @@
 </head>
 <body>
 
-    <!-- ── Hero full-screen ─────────────────────────────── -->
+    <!-- ── 1. HERO ───────────────────────────────────────── -->
     <section class="hero">
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1 class="hero-title">TAILA IDZI</h1>
             <p class="hero-sub">Gravura &nbsp;·&nbsp; Desenho &nbsp;·&nbsp; Instalação &nbsp;·&nbsp; Objetos</p>
+            <a href="#carousel-section" class="hero-cta-btn">explorar obras <span>→</span></a>
         </div>
         <span class="scroll-hint">scroll ↓</span>
         <div class="hero-progress"><div class="hero-progress-bar"></div></div>
     </section>
 
-    <!-- ── Nav ──────────────────────────────────────────── -->
+    <!-- ── 2. NAV SIMPLIFICADO ───────────────────────────── -->
     <div id="wrapper">
-        <div id="nav">
-        <a href="bio.html">Bio</a>
-        <a href="coisinha-de-nada.html">Coisinha de nada</a>
-        <a href="desenho.html">Desenho</a>
-        <a href="desobjetos.html">Desobjetos</a>
-        <a href="exposicoes.html">Exposições</a>
-        <a href="gravura.html">Gravura</a>
-        <a href="laboratorios-de-afetos.html">Laboratórios de Afetos</a>
-        <a href="objetos.html">Objetos</a>
-        <a href="pinturenhos.html">Pinturenhos e Desenhuras</a>
-        <a href="sobre.html">Sobre</a>
-        <a href="links.html">Links</a>
+        <div id="nav" class="nav-home">
+            <a href="#carousel-section">Obras</a>
+            <a href="#series-section">Séries</a>
+            <a href="exposicoes.html">Exposições</a>
+            <a href="bio.html">Bio</a>
+            <a href="sobre.html">Sobre</a>
+            <a href="links.html">Links</a>
+        </div>
     </div>
 
-        <!-- letreiro injetado pelo JS aqui -->
-    </div>
-
-    <!-- ── Carrossel de obras ────────────────────────────── -->
+    <!-- ── 3. CARROSSEL ──────────────────────────────────── -->
     <section id="carousel-section">
         <div class="c-header">
             <span class="c-label">obras em destaque</span>
@@ -48,32 +42,36 @@
         <div id="carousel-wrap">
             <button class="c-prev-btn">&#8249;</button>
 
-            <div class="c-item" onclick="location.href='laboratorios-de-afetos.html'">
+            <div class="c-item" data-caption="Laboratório de Afetos" onclick="location.href='laboratorios-de-afetos.html'">
                 <img src="fotos/Laborat_rio_de_Afetos-001.jpg" alt="Laboratório de Afetos">
             </div>
-            <div class="c-item" onclick="location.href='desobjetos.html'">
+            <div class="c-item" data-caption="Desobjetos" onclick="location.href='desobjetos.html'">
                 <img src="fotos/IMG_6413.jpg" alt="Desobjetos">
             </div>
-            <div class="c-item" onclick="location.href='gravura.html'">
+            <div class="c-item" data-caption="Gravura" onclick="location.href='gravura.html'">
                 <img src="fotos/1.jpg" alt="Gravura">
             </div>
-            <div class="c-item" onclick="location.href='laboratorios-de-afetos.html'">
+            <div class="c-item" data-caption="Laboratório de Afetos" onclick="location.href='laboratorios-de-afetos.html'">
                 <img src="fotos/Laborat_rio_de_Afetos-035.jpg" alt="Laboratório de Afetos">
             </div>
-            <div class="c-item" onclick="location.href='pinturenhos.html'">
+            <div class="c-item" data-caption="Pinturenhos e Desenhuras" onclick="location.href='pinturenhos.html'">
                 <img src="fotos/P8.jpg" alt="Pinturenhos">
             </div>
-            <div class="c-item" onclick="location.href='desobjetos.html'">
+            <div class="c-item" data-caption="Desobjetos" onclick="location.href='desobjetos.html'">
                 <img src="fotos/IMG_2499.jpg" alt="Desobjetos">
             </div>
-            <div class="c-item" onclick="location.href='objetos.html'">
+            <div class="c-item" data-caption="Objetos" onclick="location.href='objetos.html'">
                 <img src="fotos/A.jpg" alt="Objetos">
             </div>
-            <div class="c-item" onclick="location.href='laboratorios-de-afetos.html'">
+            <div class="c-item" data-caption="Laboratório de Afetos" onclick="location.href='laboratorios-de-afetos.html'">
                 <img src="fotos/Laborat_rio_de_Afetos-041.jpg" alt="Laboratório de Afetos">
             </div>
 
             <button class="c-next-btn">&#8250;</button>
+        </div>
+
+        <div class="c-caption">
+            <span id="c-caption-text">Laboratório de Afetos</span>
         </div>
 
         <div class="c-footer">
@@ -90,7 +88,7 @@
         </div>
     </section>
 
-    <!-- ── Destaque editorial ────────────────────────────── -->
+    <!-- ── 4. DESTAQUE EDITORIAL ─────────────────────────── -->
     <section class="editorial-section">
         <div class="editorial-img">
             <img src="fotos/Laborat_rio_de_Afetos-020.jpg" alt="Laboratório de Afetos">
@@ -103,34 +101,31 @@
         </div>
     </section>
 
-    <!-- ── Citação ───────────────────────────────────────── -->
+    <!-- ── 5. CITAÇÃO ────────────────────────────────────── -->
     <section class="quote-section">
         <span class="quote-mark">"</span>
         <p class="quote-text">Fazer arte é encontrar o que estava escondido dentro das coisas que ninguém mais quis olhar.</p>
         <p class="quote-author">— Taila Idzi</p>
     </section>
 
-    <!-- ── Galeria espalhada — polaroids ─────────────────── -->
+    <!-- ── 6. GALERIA POLAROID ───────────────────────────── -->
     <section class="scattered-section">
         <div class="section-heading">
-            <h2 class="section-heading-title">Obras</h2>
-            <p class="section-heading-sub">gravura · desenho · instalação</p>
+            <h2 class="section-heading-title">Processo</h2>
+            <p class="section-heading-sub">registros e experimentações</p>
         </div>
         <div class="scattered">
             <a href="laboratorios-de-afetos.html"><img src="fotos/Laborat_rio_de_Afetos-003.jpg" alt=""></a>
             <a href="gravura.html"><img src="fotos/2.jpg" alt=""></a>
             <a href="desobjetos.html"><img src="fotos/IMG_6440.jpg" alt=""></a>
             <a href="pinturenhos.html"><img src="fotos/IMG_1982.jpg" alt=""></a>
-            <a href="laboratorios-de-afetos.html"><img src="fotos/Laborat_rio_de_Afetos-027.jpg" alt=""></a>
             <a href="objetos.html"><img src="fotos/B.jpg" alt=""></a>
-            <a href="desobjetos.html"><img src="fotos/IMG_2589.jpg" alt=""></a>
-            <a href="laboratorios-de-afetos.html"><img src="fotos/Laborat_rio_de_Afetos-031.jpg" alt=""></a>
-            <a href="gravura.html"><img src="fotos/7.jpg" alt=""></a>
+            <a href="laboratorios-de-afetos.html"><img src="fotos/Laborat_rio_de_Afetos-027.jpg" alt=""></a>
         </div>
     </section>
 
-    <!-- ── Grade de séries ───────────────────────────────── -->
-    <section class="series-section">
+    <!-- ── 7. GRID DE SÉRIES ──────────────────────────────── -->
+    <section class="series-section" id="series-section">
         <div class="section-heading">
             <h2 class="section-heading-title">Séries</h2>
             <p class="section-heading-sub">explorar o trabalho</p>
@@ -195,22 +190,14 @@
         </div>
     </section>
 
-    <!-- ── CTA ───────────────────────────────────────────── -->
+    <!-- ── 8. CTA FINAL ───────────────────────────────────── -->
     <section class="cta-section">
-        <h2 class="cta-title">Explorar o trabalho da Taila</h2>
-        <p class="cta-subtitle">Gravuras, desenhos, objetos e instalações reunidos em um só lugar. Navegue pelas séries e conheça o processo.</p>
+        <h2 class="cta-title">Conheça o trabalho da Taila</h2>
+        <p class="cta-subtitle">Gravuras, desenhos, objetos e instalações reunidos em um só lugar.</p>
         <a href="sobre.html" class="cta-btn">sobre o trabalho <span class="cta-btn-icon">→</span></a>
         <div class="cta-links">
             <a href="bio.html">Bio</a>
-            <a href="gravura.html">Gravura</a>
-            <a href="desenho.html">Desenho</a>
-            <a href="desobjetos.html">Desobjetos</a>
-            <a href="objetos.html">Objetos</a>
-            <a href="pinturenhos.html">Pinturenhos</a>
-            <a href="laboratorios-de-afetos.html">Laboratórios de Afetos</a>
-            <a href="coisinha-de-nada.html">Coisinha de nada</a>
             <a href="exposicoes.html">Exposições</a>
-            <a href="sobre.html">Sobre</a>
             <a href="links.html">Links</a>
         </div>
     </section>

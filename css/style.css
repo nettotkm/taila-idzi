@@ -14,6 +14,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background: #f8f6f2;
     font-family: Arial, Helvetica, sans-serif;
@@ -81,11 +85,37 @@ body {
 }
 
 .hero-sub {
+    font-family: 'MoonFlower', cursive;
     margin-top: 14px;
-    font-size: 11px;
+    font-size: 33px;
     letter-spacing: 5px;
     text-transform: uppercase;
     color: rgba(255,255,255,0.6);
+}
+
+.hero-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 44px;
+    background: rgba(190,155,70,0.9);
+    color: #111;
+    font-family: 'MoonFlower', cursive;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-decoration: none;
+    padding: 15px 34px;
+    border-radius: 100px;
+    position: relative;
+    z-index: 2;
+    transition: background 0.25s ease, gap 0.25s ease, transform 0.25s ease;
+}
+
+.hero-cta-btn:hover {
+    background: rgba(190,155,70,1);
+    gap: 20px;
+    transform: translateY(-2px);
 }
 
 .scroll-hint {
@@ -196,6 +226,31 @@ body {
 #nav a.nav-active::after {
     transform: scaleX(1);
     background: rgba(190,155,70,0.75);
+}
+
+/* nav simplificada — homepage */
+#nav.nav-home {
+    justify-content: center;
+    gap: 0;
+    padding: 28px 0 24px;
+    border-bottom: none;
+}
+
+#nav.nav-home a {
+    font-size: 22px;
+    padding: 4px 20px;
+    letter-spacing: 2px;
+    color: #1a1a1a;
+}
+
+#nav.nav-home::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: rgba(190,155,70,0.5);
+    margin: 18px auto 0;
+    flex-basis: 100%;
 }
 
 
@@ -371,6 +426,21 @@ body {
 .c-dot-active {
     background: rgba(190,155,70,0.85);
     transform: scale(1.4);
+}
+
+/* caption da série ativa */
+.c-caption {
+    text-align: center;
+    padding: 22px 0 0;
+    min-height: 36px;
+}
+
+#c-caption-text {
+    font-family: 'MoonFlower', cursive;
+    font-size: 20px;
+    color: rgba(248,246,242,0.55);
+    letter-spacing: 3px;
+    transition: opacity 0.35s ease;
 }
 
 /* ── Citação tipográfica ─────────────────────────────────── */
@@ -873,10 +943,11 @@ body {
 
 @media (max-width: 640px) {
 
-    .hero-content { padding: 0 24px 48px; }
+    .hero-content { padding: 0 24px 56px; }
     .hero-title { font-size: 54px; }
+    .hero-cta-btn { font-size: 17px; padding: 13px 26px; margin-top: 32px; }
 
-    #wrapper { padding: 24px 16px 0; }
+    #wrapper { padding: 0; }
 
     #nav {
         flex-wrap: nowrap;
@@ -884,9 +955,14 @@ body {
         -webkit-overflow-scrolling: touch;
         gap: 0;
         scrollbar-width: none;
+        padding: 18px 16px;
     }
     #nav::-webkit-scrollbar { display: none; }
-    #nav a { font-size: 16px; padding: 2px 8px; }
+    #nav a { font-size: 16px; padding: 2px 10px; }
+
+    #nav.nav-home { padding: 18px 8px 16px; }
+    #nav.nav-home a { font-size: 17px; }
+    #nav.nav-home::after { display: none; }
 
     .c-header { padding: 36px 20px 20px; }
     .c-footer { padding: 20px 20px 40px; }

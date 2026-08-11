@@ -56,8 +56,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const items = Array.from(wrap.querySelectorAll('.c-item'));
     const section = document.getElementById('carousel-section');
-    const dots  = section ? Array.from(section.querySelectorAll('.c-dot')) : [];
+    const dots      = section ? Array.from(section.querySelectorAll('.c-dot')) : [];
     const counterEl = document.getElementById('c-current-num');
+    const captionEl = document.getElementById('c-caption-text');
     const total = items.length;
     let current = 0;
     let timer;
@@ -65,15 +66,21 @@ document.addEventListener('DOMContentLoaded', function () {
     function update() {
         items.forEach((item, i) => {
             item.classList.remove('c-active', 'c-prev', 'c-next', 'c-far');
-            // posição relativa ao item ativo (circular)
             const rel = ((i - current) % total + total) % total;
             if      (rel === 0)         item.classList.add('c-active');
-            else if (rel === total - 1) item.classList.add('c-prev');   // sempre à esquerda
-            else if (rel === 1)         item.classList.add('c-next');   // sempre à direita
+            else if (rel === total - 1) item.classList.add('c-prev');
+            else if (rel === 1)         item.classList.add('c-next');
             else                        item.classList.add('c-far');
         });
         dots.forEach((d, i) => d.classList.toggle('c-dot-active', i === current));
         if (counterEl) counterEl.textContent = String(current + 1).padStart(2, '0');
+        if (captionEl) {
+            captionEl.style.opacity = '0';
+            setTimeout(() => {
+                captionEl.textContent = items[current].dataset.caption || '';
+                captionEl.style.opacity = '1';
+            }, 180);
+        }
     }
 
     function goTo(idx) {
